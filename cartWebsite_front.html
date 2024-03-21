@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Karun 2210997115</title>
+  <style>
+    /* CSS styles for the cart items panel */
+    #cart_items {
+      border: 1px solid #ccc;
+      padding: 1xam0px;
+      margin-bottom: 10px;
+    }
+    #cart_items div {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>This is a cart for buying</h1>
+  <div id="cart_items">
+    <!-- You can add items to the cart here -->
+    <button onclick="addItemToCart('Item 1', 10)">Add Item 1 to Cart</button>
+    <button onclick="addItemToCart('Item 2', 15)">Add Item 2 to Cart</button>
+  </div>
+  <div id="cart_total">
+    Total: $<span id="total_amount">0</span>
+    <button id="checkout_button" onclick="checkout()">Checkout</button>
+    <button id="remove_items" onclick="removeItemFromCart('Item 1', 10)">Remove items</button>
+  </div>
+
+  <script>
+    let cart = [];
+    let totalAmount = 0;
+
+    function addItemToCart(itemName, price) {
+      cart.push({ name: itemName, price: price });
+      updateCartDisplay();
+      updateTotalAmount();
+    }
+
+    function updateCartDisplay() {
+      let cartDisplay = document.getElementById('cart_items');
+      cartDisplay.innerHTML = '';
+      cart.forEach(item => {
+        let itemDiv = document.createElement('div');
+        itemDiv.textContent = item.name + ' - $' + item.price;
+        cartDisplay.appendChild(itemDiv);
+
+        function removeItemFromCart(itemName, price) {
+  for (let i = 0; i < cart.length; i++) {
+    if (cart[i].name === itemName && cart[i].price === price) {
+      cart.splice(i, 1); // Remove the item from the cart array
+      updateCartDisplay();
+      updateTotalAmount();
+      break; // Exit the loop after the item is removed
+    }
+  }
+} //Javascript is easier than I thought it would be, it's kinda like C++ functions without some of the features
+});
+}
+
+    function updateTotalAmount() {
+      totalAmount = cart.reduce((total, item) => total + item.price, 0);
+      document.getElementById('total_amount').textContent = totalAmount;
+    }
+
+    function checkout() {
+      if (cart.length === 0) {
+        alert('Your cart is empty. Please add items before checking out.');
+      } else {
+        alert('Checkout complete! Total amount: $' + totalAmount);
+        cart = []; // Clear the cart after checkout
+        updateCartDisplay();
+        updateTotalAmount();
+      }
+    }
+  </script>
+</body>
+</html>

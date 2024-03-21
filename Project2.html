@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Karun 2210997115</title>
+    <style>
+    h1{ 
+        padding:10px;
+        border: 1px solid black;
+        display:inline-block;
+    }
+    </style>
+</head>
+<body>
+    <h1>This is Karun's website</h1>
+    <p>You can look at GIFs here</p>
+    <h2>I think Kugisaki(Surname) Nobara(First Name) would make for a good wife, right?</h2>
+<script>
+    // Create an img element
+        var gif = document.createElement('img');
+        // Set the src attribute to the URL of the GIF
+        gif.src = 'https://media.tenor.com/0J02e9FiWHQAAAAd/nobara.gif';
+        // Append the img element to the body
+        document.body.appendChild(gif);
+
+        var gifNobara = document.createElement('img');
+        gifNobara.src='https://c.tenor.com/z6v9ezyUbsgAAAAd/nobara-kugisaki-jujutsu-kaisen.gif';
+        document.body.appendChild(gifNobara);
+        // Make an API request to GIPHY
+       
+        fetch('https://api.giphy.com/v1/gifs/search?q=Nobara+Kugisaki&api_key=5nuP6Fa7F4rW3jRKs7z1DvT0sxdgPAjZ')
+          .then(response => response.json())
+          .then(data => {
+            // Process the GIF data and display the GIFs on your site
+            data.data.forEach(gif => {
+              var img = document.createElement('img');
+              img.src = gif.images.original.url;
+              document.body.appendChild(img);
+            });
+          });
+          fetch('https://jsonplaceholder.typicode.com/todos')
+          .then(response => response.json())
+          .then(data => {
+            // Process the user data and display the user names on your site
+            data.forEach(user => {
+              var p = document.createElement('p');
+              p.textContent = user.name;
+              document.body.appendChild(p);
+            });
+          });
+    </script>
+</body>
+</html>
